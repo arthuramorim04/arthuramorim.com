@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arthur Amorim — Software Engineer</title>
+<meta name="description" content="Arthur Amorim — Software Engineer focado em arquitetura de software, sistemas distribuídos de alta escala e engenharia assistida por IA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0c11;
+    --bg-elev:#12151d;
+    --bg-elev-2:#171b25;
+    --border:#242938;
+    --border-soft:#1b1f2a;
+    --text:#eef0f5;
+    --text-dim:#9aa3b5;
+    --text-faint:#6b7387;
+    --accent:#7c9eff;
+    --accent-2:#8ff0d0;
+    --accent-soft:rgba(124,158,255,0.14);
+    --shadow: 0 24px 70px -24px rgba(0,0,0,0.65);
+    --radius:20px;
+    --maxw:1100px;
+    --header-h:74px;
+  }
+
+  *{box-sizing:border-box;}
+  html{
+    scroll-behavior:smooth;
+    scroll-snap-type: y mandatory;
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 12% -10%, rgba(124,158,255,0.12), transparent 60%),
+      radial-gradient(900px 500px at 105% 0%, rgba(143,240,208,0.09), transparent 55%),
+      radial-gradient(700px 500px at 50% 100%, rgba(124,158,255,0.06), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  img{max-width:100%; display:block;}
+
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding-inline:24px;}
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:50;
+    height:var(--header-h);
+    display:flex; align-items:center;
+    backdrop-filter:blur(14px) saturate(140%);
+    -webkit-backdrop-filter:blur(14px) saturate(140%);
+    background:rgba(10,12,17,0.7);
+    border-bottom:1px solid var(--border-soft);
+  }
+  nav.wrap{
+    width:100%;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{font-weight:800; letter-spacing:0.2px; color:var(--text); font-size:1.05rem;}
+  .brand span{color:var(--accent);}
+  .nav-links{display:flex; align-items:center; gap:30px; list-style:none; margin:0; padding:0;}
+  .nav-links a{color:var(--text-dim); font-size:0.92rem; font-weight:500;}
+  .nav-links a:hover{color:var(--text); text-decoration:none;}
+  .nav-toggle{
+    display:none; background:var(--bg-elev); border:1px solid var(--border); color:var(--text);
+    border-radius:10px; padding:8px 11px; cursor:pointer; font-size:1rem;
+  }
+
+  @media (max-width:760px){
+    .nav-links{
+      position:absolute; top:var(--header-h); left:0; right:0;
+      background:rgba(10,12,17,0.97); border-bottom:1px solid var(--border);
+      flex-direction:column; align-items:flex-start; padding:18px 24px; gap:16px;
+      display:none;
+    }
+    .nav-links.open{display:flex;}
+    .nav-toggle{display:inline-block;}
+  }
+
+  /* SECTIONS — one screen at a time */
+  section{
+    min-height:100vh;
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+    scroll-margin-top:var(--header-h);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+    padding-block: clamp(56px, 9vw, 100px);
+  }
+
+  .scroll-arrow{
+    position:absolute; left:50%; transform:translateX(-50%);
+    width:46px; height:46px; border-radius:50%;
+    background:var(--bg-elev);
+    border:1px solid var(--border);
+    color:var(--text-dim);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.25rem; line-height:1;
+    cursor:pointer;
+    z-index:5;
+    transition:color .15s ease, border-color .15s ease, background .15s ease, transform .15s ease;
+  }
+  .scroll-arrow:hover{color:var(--accent); border-color:var(--accent); background:var(--accent-soft); transform:translateX(-50%) translateY(-2px);}
+  .scroll-next{bottom:clamp(18px, 4vh, 40px); animation:bounceDown 2.2s ease-in-out infinite;}
+  .scroll-up{top:calc(var(--header-h) + 14px); animation:bounceUp 2.2s ease-in-out infinite;}
+  @keyframes bounceDown{
+    0%,100%{transform:translateX(-50%) translateY(0);}
+    50%{transform:translateX(-50%) translateY(8px);}
+  }
+  @keyframes bounceUp{
+    0%,100%{transform:translateX(-50%) translateY(0);}
+    50%{transform:translateX(-50%) translateY(-8px);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .scroll-arrow{animation:none;}
+  }
+
+  /* SIDE DOT NAVIGATION */
+  .dots-nav{
+    position:fixed; right:28px; top:50%; transform:translateY(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:18px;
+    z-index:45;
+  }
+  .dot{
+    width:11px; height:11px; border-radius:50%;
+    background:var(--border); border:none; cursor:pointer; padding:0;
+    position:relative;
+    transition:background .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .dot:hover{background:var(--text-dim); transform:scale(1.25);}
+  .dot.active{background:var(--accent); box-shadow:0 0 0 4px var(--accent-soft); transform:scale(1.3);}
+  .dot-tip{
+    position:absolute; right:22px; top:50%;
+    transform:translateY(-50%) translateX(6px);
+    white-space:nowrap;
+    background:var(--bg-elev); border:1px solid var(--border);
+    color:var(--text); font-size:0.75rem; font-weight:500;
+    padding:5px 12px; border-radius:8px;
+    opacity:0; pointer-events:none;
+    transition:opacity .15s ease, transform .15s ease;
+  }
+  .dot:hover .dot-tip, .dot:focus-visible .dot-tip{
+    opacity:1; transform:translateY(-50%) translateX(0);
+  }
+  @media (max-width:900px){
+    .dots-nav{display:none;}
+  }
+
+  /* HERO */
+  .hero{min-height:100vh;}
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.3fr auto;
+    gap:56px;
+    align-items:center;
+  }
+  @media (max-width:760px){
+    .hero-grid{grid-template-columns:1fr; text-align:center;}
+    .hero-avatar{order:-1; margin:0 auto;}
+    .hero-cta{justify-content:center;}
+    .hero-badges{justify-content:center;}
+  }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    color:var(--accent-2); font-size:0.82rem; font-weight:600;
+    text-transform:uppercase; letter-spacing:1.3px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:''; width:8px; height:8px; border-radius:50%;
+    background:var(--accent-2); box-shadow:0 0 12px var(--accent-2);
+  }
+
+  h1{
+    font-size:clamp(2.5rem, 6.2vw, 4.4rem);
+    line-height:1.06;
+    margin:0 0 14px;
+    font-weight:800;
+    letter-spacing:-1px;
+  }
+  h1 .accent{
+    background:linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  .role{
+    display:flex; align-items:center; gap:10px;
+    font-size:clamp(1.05rem, 2vw, 1.3rem);
+    font-weight:600;
+    color:var(--text);
+    margin:0 0 22px;
+  }
+  .role .dot-sep{color:var(--text-faint); font-weight:400;}
+  .role a{color:var(--accent-2); font-weight:700;}
+  @media (max-width:760px){
+    .role{justify-content:center;}
+  }
+
+  .lede{
+    font-size:clamp(1.05rem, 1.6vw, 1.25rem);
+    color:var(--text-dim);
+    max-width:60ch;
+    margin:0 0 32px;
+  }
+
+  .hero-cta{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 24px; border-radius:999px;
+    font-weight:600; font-size:0.95rem;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn:hover{text-decoration:none; transform:translateY(-2px);}
+  .btn-primary{
+    background:linear-gradient(135deg, var(--accent), #6485e6);
+    color:#0a0c11;
+    box-shadow:0 8px 24px -10px rgba(124,158,255,0.55);
+  }
+  .btn-primary:hover{box-shadow:0 14px 34px -10px rgba(124,158,255,0.7);}
+  .btn-ghost{
+    background:rgba(255,255,255,0.03);
+    border-color:var(--border);
+    color:var(--text);
+    backdrop-filter:blur(6px);
+  }
+  .btn-ghost:hover{border-color:var(--accent); color:var(--accent);}
+
+  .hero-badges{
+    display:flex; gap:10px; margin-top:26px; flex-wrap:wrap;
+  }
+  .badge{
+    font-size:0.8rem; color:var(--text-faint);
+    border:1px solid var(--border); border-radius:999px;
+    padding:6px 13px;
+    background:rgba(255,255,255,0.02);
+  }
+
+  .hero-avatar{
+    position:relative;
+    width:min(360px, 65vw);
+    aspect-ratio:1;
+  }
+  .hero-avatar img{
+    width:100%; height:100%; border-radius:50%;
+    object-fit:cover;
+    border:3px solid var(--bg-elev-2);
+    box-shadow:var(--shadow);
+    position:relative; z-index:2;
+  }
+  .hero-avatar::before{
+    content:'';
+    position:absolute; inset:-12px;
+    border-radius:50%;
+    background:conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--accent));
+    filter:blur(3px);
+    opacity:0.5;
+    animation:spin 9s linear infinite;
+    z-index:1;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  @media (prefers-reduced-motion: reduce){
+    .hero-avatar::before{animation:none;}
+  }
+
+  .section-head{margin-bottom:40px; max-width:70ch;}
+  .section-head .eyebrow{margin-bottom:12px;}
+  h2{font-size:clamp(1.7rem, 3.6vw, 2.2rem); margin:0 0 12px; letter-spacing:-0.4px; font-weight:800;}
+  .section-head p{color:var(--text-dim); margin:0; font-size:1.05rem;}
+
+  #about{border-top:1px solid var(--border-soft);}
+  .about-body{
+    display:grid; grid-template-columns: 1fr; gap:24px;
+  }
+  .about-body p{color:var(--text-dim); max-width:75ch; font-size:1.02rem;}
+  .quote{
+    border-left:3px solid var(--accent);
+    padding:20px 26px;
+    background:linear-gradient(180deg, var(--bg-elev), var(--bg-elev-2));
+    border-radius:0 16px 16px 0;
+    font-style:italic;
+    color:var(--text);
+    margin:8px 0 0;
+  }
+
+  #skills{border-top:1px solid var(--border-soft);}
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:22px;
+  }
+  .card{
+    background:linear-gradient(180deg, var(--bg-elev), var(--bg-elev-2));
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:28px;
+    position:relative;
+    overflow:hidden;
+    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    opacity:0; transform:translateY(16px);
+  }
+  .card::before{
+    content:'';
+    position:absolute; inset:0 0 auto 0; height:3px;
+    background:linear-gradient(90deg, var(--accent), var(--accent-2));
+    opacity:0; transition:opacity .2s ease;
+  }
+  .card.visible{opacity:1; transform:translateY(0);}
+  .card:hover{
+    transform:translateY(-5px);
+    border-color:rgba(124,158,255,0.4);
+    box-shadow:0 20px 46px -20px rgba(0,0,0,0.55);
+  }
+  .card:hover::before{opacity:1;}
+  .card .icon{
+    width:48px; height:48px; border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.4rem;
+    background:var(--accent-soft);
+    margin-bottom:16px;
+  }
+  .card h3{margin:0 0 10px; font-size:1.12rem; font-weight:700;}
+  .card ul{margin:0; padding-left:18px; color:var(--text-dim); font-size:0.92rem;}
+  .card li{margin-bottom:6px;}
+
+  #contact{border-top:1px solid var(--border-soft);}
+  .contact-box{
+    background:linear-gradient(180deg, var(--bg-elev), var(--bg-elev-2));
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:clamp(32px, 5vw, 56px);
+    text-align:center;
+  }
+  .contact-box h2{margin-bottom:10px;}
+  .contact-box p{color:var(--text-dim); margin:0 0 28px; font-size:1.05rem;}
+  .contact-links{
+    display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
+  }
+
+  footer{
+    border-top:1px solid var(--border-soft);
+    padding-block:28px;
+    text-align:center;
+    color:var(--text-faint);
+    font-size:0.85rem;
+  }
+
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.visible{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#home" class="brand">Arthur<span>.</span>Amorim</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Início</a></li>
+      <li><a href="#about">Sobre</a></li>
+      <li><a href="#skills">Competências</a></li>
+      <li><a href="#contact">Contato</a></li>
+      <li><a href="https://github.com/arthuramorim04" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+  </nav>
+</header>
+
+<nav class="dots-nav" aria-label="Navegação por seções">
+  <button class="dot active" data-target="#home" aria-label="Ir para Início"><span class="dot-tip">Início</span></button>
+  <button class="dot" data-target="#about" aria-label="Ir para Sobre"><span class="dot-tip">Sobre</span></button>
+  <button class="dot" data-target="#skills" aria-label="Ir para Competências"><span class="dot-tip">Competências</span></button>
+  <button class="dot" data-target="#contact" aria-label="Ir para Contato"><span class="dot-tip">Contato</span></button>
+</nav>
+
+<main>
+
+  <section id="home" class="hero wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Disponível para novas conexões</div>
+        <h1>Olá, eu sou <span class="accent">Arthur Amorim</span></h1>
+        <p class="role">Software Engineer <span class="dot-sep">•</span> Atualmente na <a href="https://www.mercadolivre.com.br" target="_blank" rel="noopener">Mercado Livre</a></p>
+        <p class="lede">
+          Focado em <strong>arquitetura de software</strong>, sistemas distribuídos de alta escala
+          e <strong>engenharia assistida por IA</strong> — desenhando sistemas orientados a eventos
+          para o setor logístico.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="https://github.com/arthuramorim04" target="_blank" rel="noopener">Ver GitHub</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/arthur-amorim/" target="_blank" rel="noopener">Conectar no LinkedIn</a>
+        </div>
+        <div class="hero-badges">
+          <span class="badge">📍 Florianópolis, BR</span>
+          <span class="badge">🏢 Mercado Livre</span>
+          <span class="badge">⚡ Event-Driven Architecture</span>
+        </div>
+      </div>
+      <div class="hero-avatar">
+        <img src="https://github.com/arthuramorim04.png" alt="Foto de Arthur Amorim" width="360" height="360" loading="eager">
+      </div>
+    </div>
+    <button class="scroll-arrow scroll-next" data-target="#about" aria-label="Ir para a próxima seção">↓</button>
+  </section>
+
+  <section id="about" class="wrap">
+    <button class="scroll-arrow scroll-up" data-target="#home" aria-label="Ir para a seção anterior">↑</button>
+    <div class="section-head reveal">
+      <div class="eyebrow">Sobre mim</div>
+      <h2>Construindo uma base sólida em arquitetura, usando IA como acelerador — não atalho</h2>
+    </div>
+    <div class="about-body reveal">
+      <p>
+        Passei os últimos meses observando o momento exato em que a IA gera uma solução em segundos
+        e o desenvolvedor aceita o código sem revisar. Em ambientes de alta escala, o resultado disso
+        é perigoso: código sintaticamente perfeito, mas estruturalmente genérico. Ferramentas como
+        Claude ou Codex, sem um olhar crítico de contexto, entregam a resposta média — e a média não
+        aguenta o tranco de milhões de eventos. A IA não resolve a complexidade por si só; ela entrega
+        o padrão mais provável.
+      </p>
+      <p>
+        Minha atuação é unir o potencial da IA à construção dessa base — uma base sólida de arquitetura
+        de software que busco todos os dias aprofundar. Uso a
+        tecnologia para validar ideias rapidamente e fazer a solução quebrar o quanto antes, expondo
+        gargalos e falhas de design que levariam meses para aparecer no desenvolvimento tradicional.
+      </p>
+      <blockquote class="quote">
+        "A máquina está trabalhando para o seu design de arquitetura, ou você está aceitando o design da máquina?"
+      </blockquote>
+    </div>
+    <button class="scroll-arrow scroll-next" data-target="#skills" aria-label="Ir para a próxima seção">↓</button>
+  </section>
+
+  <section id="skills" class="wrap">
+    <button class="scroll-arrow scroll-up" data-target="#about" aria-label="Ir para a seção anterior">↑</button>
+    <div class="section-head reveal">
+      <div class="eyebrow">Competências</div>
+      <h2>Onde eu atuo</h2>
+      <p>Três frentes que se reforçam: arquitetura de escala, engenharia assistida por IA e cultura técnica.</p>
+    </div>
+    <div class="cards">
+      <div class="card reveal">
+        <span class="icon">🏗️</span>
+        <h3>Arquitetura &amp; Engenharia de Backend</h3>
+        <ul>
+          <li>Event-Driven Architecture (EDA), Microsserviços, Clean Architecture, CQRS</li>
+          <li>Sistemas distribuídos de alta disponibilidade, processamento assíncrono, mensageria/filas</li>
+          <li>Redução de latência, controle de gargalos de I/O e uso de recursos</li>
+          <li>Observabilidade: tracing distribuído, métricas e logs ponta a ponta</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <span class="icon">🤖</span>
+        <h3>Inteligência Artificial &amp; Engenharia Assistida</h3>
+        <ul>
+          <li>Uso avançado de LLMs (Claude, OpenAI, Codex) como co-pilotos de ideação e prototipação</li>
+          <li>Estratégias de fail-fast assistido para identificar riscos arquiteturais cedo</li>
+          <li>Agentes, automações de fluxo de trabalho e integrações via API com modelos generativos</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <span class="icon">🤝</span>
+        <h3>Práticas &amp; Colaboração Técnica</h3>
+        <ul>
+          <li>Code reviews críticos, focados em sustentabilidade e arquitetura</li>
+          <li>Soluções orientadas ao impacto de negócio (domínio logístico, produtos internos críticos)</li>
+          <li>Documentação clara, alinhamento com stakeholders e post-mortems compartilhados</li>
+        </ul>
+      </div>
+    </div>
+    <button class="scroll-arrow scroll-next" data-target="#contact" aria-label="Ir para a próxima seção">↓</button>
+  </section>
+
+  <section id="contact" class="wrap">
+    <button class="scroll-arrow scroll-up" data-target="#skills" aria-label="Ir para a seção anterior">↑</button>
+    <div class="contact-box reveal">
+      <div class="eyebrow" style="justify-content:center;">Redes</div>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="https://www.linkedin.com/in/arthur-amorim/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/arthuramorim04" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    © <span id="year"></span> Arthur Amorim — feito com HTML, CSS e JS puros.
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', function () {
+    var isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(function (el) { revealObserver.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  document.querySelectorAll('.scroll-arrow, .dot').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = document.querySelector(btn.dataset.target);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  var dots = document.querySelectorAll('.dot');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main > section'));
+  if ('IntersectionObserver' in window && dots.length) {
+    var dotObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = '#' + entry.target.id;
+          dots.forEach(function (d) {
+            d.classList.toggle('active', d.dataset.target === id);
+          });
+        }
+      });
+    }, { threshold: 0.55 });
+    sections.forEach(function (s) { dotObserver.observe(s); });
+  }
+</script>
+
+</body>
+</html>
