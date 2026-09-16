@@ -49,19 +49,26 @@ code{font-family:ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; fon
 
 .grid-bg{
   position:absolute; inset:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size:64px 64px;
+  overflow:hidden;
   -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 35%, #000 40%, transparent 90%);
   mask-image:radial-gradient(ellipse 70% 60% at 50% 35%, #000 40%, transparent 90%);
   pointer-events:none;
   z-index:0;
+}
+.grid-bg::before{
+  content:"";
+  position:absolute;
+  inset:-64px;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size:64px 64px;
+  will-change:transform;
   animation:gridDrift 16s linear infinite;
 }
 @keyframes gridDrift{
-  from{background-position:0 0;}
-  to{background-position:64px 64px;}
+  from{transform:translate3d(0,0,0);}
+  to{transform:translate3d(-64px,-64px,0);}
 }
 
 /* HEADER */
@@ -529,5 +536,5 @@ footer{
   .hero .eyebrow::before, .doc-eyebrow.eyebrow::before{animation:none;}
   .reveal, .card, .project-card{transition:none;}
   .carousel-track{scroll-behavior:auto;}
-  .grid-bg{animation:none;}
+  .grid-bg::before{animation:none;}
 }

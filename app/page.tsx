@@ -36,7 +36,7 @@ export default function HomePage() {
               <div className="eyebrow">Disponível para novas conexões</div>
               <h1>Olá, eu sou Arthur Amorim</h1>
               <p className="role">
-                Software Engineer <span className="dot-sep">•</span> Atualmente na{" "}
+                Software Engineer <span className="dot-sep">•</span>{" "}
                 <a href="https://www.mercadolivre.com.br" target="_blank" rel="noopener">Mercado Livre</a>
               </p>
               <p className="lede">
