@@ -6,7 +6,10 @@ Site estático em HTML/CSS/JS puros (`index.html`), sem build step nem dependên
 
 ## Estrutura
 
-- `index.html` — página única com hero, sobre, competências e redes.
+- `index.html` — página principal, com hero, sobre, competências, projetos e redes.
+- `projetos/` — uma página por projeto em destaque (galeria de telas, stack técnica, links).
+- `assets/projetos.css` e `assets/projetos.js` — estilos e o carrossel de imagens compartilhados pelas páginas de projeto.
+- `assets/projetos/<projeto>/` — screenshots de cada projeto.
 
 ## Deploy
 

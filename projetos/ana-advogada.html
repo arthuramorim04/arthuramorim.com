@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ana Luiza da Silveira — Advocacia — Arthur Amorim</title>
+<meta name="description" content="Site institucional e painel de gestão multi-cliente para a advogada Ana Luiza da Silveira, especialista em Direito Digital.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/projetos.css">
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="../index.html" class="brand"><span class="brand-mark">A</span>Arthur Amorim</a>
+    <a href="../index.html#projects" class="back-link">← Todos os projetos</a>
+  </nav>
+</header>
+
+<main>
+  <section class="wrap">
+    <div class="eyebrow">Site institucional + painel administrativo</div>
+    <h1 class="hero-title">Ana Luiza da Silveira — Advocacia</h1>
+    <p class="hero-lede">
+      Presença digital completa para uma advogada especializada em Direito Digital:
+      site institucional voltado a empresas e empreendedores, e um painel de gestão
+      multi-cliente sob medida para organizar processos, clientes, agenda e serviços
+      no dia a dia do escritório.
+    </p>
+    <div class="tags">
+      <span class="badge">Next.js 14</span>
+      <span class="badge">TypeScript</span>
+      <span class="badge">styled-components</span>
+      <span class="badge">Go</span>
+      <span class="badge">PostgreSQL</span>
+      <span class="badge">Redis</span>
+      <span class="badge">JWT · multi-tenant</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://analuizaadvogada.com/" target="_blank" rel="noopener">Visitar site</a>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2>Site institucional</h2>
+    <p class="section-sub">Página voltada a empresas e empreendedores que atuam no ambiente digital.</p>
+    <div class="carousel" data-carousel>
+      <div class="carousel-track">
+        <div class="carousel-slide">
+          <div class="carousel-media"><img src="../assets/projetos/ana/home-site.png" alt="Página inicial do site, com o título Direito Digital e foto da advogada Ana Luiza"></div>
+          <p class="carousel-caption">Home — proposta de valor e contato direto</p>
+        </div>
+        <div class="carousel-slide">
+          <div class="carousel-media"><img src="../assets/projetos/ana/servicos.png" alt="Seção de serviços do site, com cards para Contratos, Consultoria, Redes Sociais, LGPD, Negócios Digitais e Treinamentos"></div>
+          <p class="carousel-caption">Serviços — contratos, LGPD, negócios digitais e mais</p>
+        </div>
+      </div>
+      <button class="carousel-btn carousel-prev" aria-label="Imagem anterior">‹</button>
+      <button class="carousel-btn carousel-next" aria-label="Próxima imagem">›</button>
+      <div class="carousel-dots"></div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2>Painel de gestão multi-cliente</h2>
+    <p class="section-sub">
+      Área administrativa privada do escritório — processos, clientes, agenda e serviços
+      num só lugar. Acesso restrito, por isso sem link de demonstração pública aqui.
+    </p>
+    <div class="carousel" data-carousel>
+      <div class="carousel-track">
+        <div class="carousel-slide">
+          <div class="carousel-media"><img src="../assets/projetos/ana/admin-login.png" alt="Tela de login restrito do painel administrativo"></div>
+          <p class="carousel-caption">Acesso restrito por login</p>
+        </div>
+        <div class="carousel-slide">
+          <div class="carousel-media"><img src="../assets/projetos/ana/admin-dashboard.png" alt="Dashboard do painel administrativo com cards de processos ativos, clientes, serviços e valores pagos, além de próximas reuniões"></div>
+          <p class="carousel-caption">Dashboard — processos, clientes, serviços e agenda</p>
+        </div>
+      </div>
+      <button class="carousel-btn carousel-prev" aria-label="Imagem anterior">‹</button>
+      <button class="carousel-btn carousel-next" aria-label="Próxima imagem">›</button>
+      <div class="carousel-dots"></div>
+    </div>
+  </section>
+
+  <section class="wrap prose">
+    <h2>Stack técnica</h2>
+    <p>
+      O <strong>frontend</strong> (site + painel) é construído em <strong>Next.js 14</strong> com
+      <strong>TypeScript</strong> e <strong>styled-components</strong>, com login via
+      Google OAuth e sessão JWT. O <strong>backend</strong> é uma API em <strong>Go</strong>
+      própria, com <strong>PostgreSQL</strong> como banco principal e <strong>Redis</strong>
+      para cache/sessão, desenhada com arquitetura <strong>multi-tenant</strong> para
+      atender múltiplos clientes/escritórios de forma isolada no mesmo sistema.
+    </p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <p class="footer-copy">© <span id="year"></span> Arthur Amorim</p>
+    <a class="back-link" href="../index.html#projects">← Todos os projetos</a>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="../assets/projetos.js"></script>
+</body>
+</html>
