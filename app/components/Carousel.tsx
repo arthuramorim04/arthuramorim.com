@@ -80,7 +80,10 @@ export default function Carousel({ slides }: { slides: CarouselSlide[] }) {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={slide.src} alt={slide.alt} loading={i === 0 ? "eager" : "lazy"} />
             </div>
-            <p className="carousel-caption">{slide.caption}</p>
+            <p className="carousel-caption">
+              <span>{slide.caption}</span>
+              <span className="carousel-count">{i + 1} / {slides.length}</span>
+            </p>
           </div>
         ))}
       </div>

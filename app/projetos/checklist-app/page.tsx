@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Carousel from "../../components/Carousel";
 import Footer from "../../components/Footer";
 import ProjectHeader from "../../components/ProjectHeader";
+import ProjectNav from "../../components/ProjectNav";
 
 export const metadata: Metadata = {
   title: "Checklist App — Arthur Amorim",
@@ -40,7 +41,7 @@ export default function ChecklistAppPage() {
           </div>
           <div className="cta-row">
             <a className="btn btn-primary" href="https://github.com/arthuramorim04/checklist-app" target="_blank" rel="noopener">Ver código no GitHub</a>
-            <a className="btn btn-ghost" href="https://expo.dev/accounts/arthuramorim05/projects/checklist-app/builds" target="_blank" rel="noopener">Baixar APK (Android)</a>
+            <a className="btn btn-ghost" href="https://expo.dev/accounts/arthuramorim05/projects/checklist-app/builds" target="_blank" rel="noopener">Ver builds (instalar APK)</a>
           </div>
         </section>
 
@@ -72,6 +73,7 @@ export default function ChecklistAppPage() {
           </p>
         </section>
       </main>
+      <ProjectNav current="checklist-app" />
       <Footer backLink={{ href: "/#projects", label: "← Todos os projetos" }} />
     </>
   );

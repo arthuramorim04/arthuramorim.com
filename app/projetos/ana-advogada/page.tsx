@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Carousel from "../../components/Carousel";
 import Footer from "../../components/Footer";
 import ProjectHeader from "../../components/ProjectHeader";
+import ProjectNav from "../../components/ProjectNav";
 
 export const metadata: Metadata = {
   title: "Ana Luiza da Silveira — Advocacia — Arthur Amorim",
@@ -17,6 +18,13 @@ const siteSlides = [
 const adminSlides = [
   { src: "/projetos/ana/admin-login.png", alt: "Tela de login restrito do painel administrativo", caption: "Acesso restrito por login" },
   { src: "/projetos/ana/admin-dashboard.png", alt: "Dashboard do painel administrativo com cards de processos ativos, clientes, serviços e valores pagos, além de próximas reuniões", caption: "Dashboard — processos, clientes, serviços e agenda" },
+];
+
+const multiTenantSlides = [
+  { src: "/projetos/ana/oficina-home.png", alt: "Site institucional da J&S Motos Racing, uma oficina de motos, com identidade visual completamente diferente do site da Ana", caption: "Mesma plataforma, outra marca: site da J&S Motos Racing" },
+  { src: "/projetos/ana/oficina-dashboard.png", alt: "Dashboard administrativo da oficina J&S Motos Racing, com cards de clientes, serviços e valores pagos, e um alerta de estoque baixo", caption: "Dashboard com alerta de estoque baixo — módulo que a Ana não usa" },
+  { src: "/projetos/ana/oficina-estoque.png", alt: "Tela de estoque de produtos da oficina, com busca por nome ou SKU e tabela de produtos cadastrados", caption: "Controle de estoque por SKU, preço e quantidade" },
+  { src: "/projetos/ana/oficina-vendas.png", alt: "Tela de vendas da oficina, com histórico de vendas por cliente, valor total e data", caption: "Histórico de vendas vinculado a cada cliente" },
 ];
 
 export default function AnaAdvogadaPage() {
@@ -62,6 +70,16 @@ export default function AnaAdvogadaPage() {
           <Carousel slides={adminSlides} />
         </section>
 
+        <section className="wrap doc-section">
+          <h2>Multi-tenant na prática</h2>
+          <p className="section-sub">
+            A mesma plataforma atende outro segmento sem tocar no core: a J&amp;S Motos Racing,
+            uma oficina de motos, roda com marca e cores próprias e um módulo extra de{" "}
+            <strong>estoque e vendas</strong> que a Ana não usa.
+          </p>
+          <Carousel slides={multiTenantSlides} />
+        </section>
+
         <section className="wrap doc-section prose">
           <h2>Stack técnica</h2>
           <p>
@@ -74,6 +92,7 @@ export default function AnaAdvogadaPage() {
           </p>
         </section>
       </main>
+      <ProjectNav current="ana-advogada" />
       <Footer backLink={{ href: "/#projects", label: "← Todos os projetos" }} />
     </>
   );

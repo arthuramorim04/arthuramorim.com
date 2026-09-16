@@ -176,6 +176,24 @@ export default function HomePage() {
               </div>
               <span className="project-link">Ver projeto →</span>
             </Link>
+
+            <Link className="project-card reveal" href="/projetos/arthuramorim-com">
+              <div className="project-thumb">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/projetos/site/home.png" alt="Tela inicial deste site, arthuramorim.com" loading="lazy" />
+              </div>
+              <div className="project-body">
+                <h3>Este site</h3>
+                <p>O próprio arthuramorim.com — portfólio pessoal em Next.js, com tema escuro, scroll-snap e esta seção de projetos.</p>
+                <div className="project-tags">
+                  <span className="badge">Next.js 16</span>
+                  <span className="badge">TypeScript</span>
+                  <span className="badge">CSS puro</span>
+                  <span className="badge">Vercel</span>
+                </div>
+              </div>
+              <span className="project-link">Ver projeto →</span>
+            </Link>
           </div>
         </section>
       </main>
