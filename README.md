@@ -2,15 +2,23 @@
 
 Landing page pessoal de Arthur Amorim — Software Engineer.
 
-Site estático em HTML/CSS/JS puros (`index.html`), sem build step nem dependências externas além de fontes do Google Fonts. Pode ser hospedado em qualquer serviço de static hosting (Netlify, Vercel, GitHub Pages, S3, etc).
+App em **Next.js 16 (App Router) + TypeScript**, com CSS puro (sem framework de estilos) preservando o visual original: tema escuro, seções em tela cheia com scroll-snap, navegação por dots e reveal-on-scroll. Hospedado na Vercel.
 
 ## Estrutura
 
-- `index.html` — página principal, com hero, sobre, competências, projetos e redes.
-- `projetos/` — uma página por projeto em destaque (galeria de telas, stack técnica, links).
-- `assets/projetos.css` e `assets/projetos.js` — estilos e o carrossel de imagens compartilhados pelas páginas de projeto.
-- `assets/projetos/<projeto>/` — screenshots de cada projeto.
+- `app/page.tsx` — página inicial (hero, sobre, competências, projetos).
+- `app/projetos/<slug>/page.tsx` — uma rota por projeto em destaque, com galeria (carrossel), stack técnica e links.
+- `app/components/` — `Carousel` (galeria de imagens), `ScrollEffects` (nav mobile, reveal-on-scroll, dots-nav, progress bar — roda em todas as páginas via layout), `Footer`, `ProjectHeader`.
+- `app/globals.css` — todos os estilos (tokens de cor/tipografia + componentes).
+- `public/projetos/<projeto>/` — screenshots de cada projeto.
+
+## Rodando localmente
+
+```bash
+npm install
+npm run dev
+```
 
 ## Deploy
 
-Aponte o domínio `arthuramorim.com` para o serviço de hospedagem escolhido e sirva `index.html` como arquivo raiz.
+Projeto Next.js padrão — importar o repositório na Vercel (framework detectado automaticamente). Todo push na branch principal gera um novo deploy.
